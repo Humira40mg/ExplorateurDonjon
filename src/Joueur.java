@@ -10,14 +10,14 @@ public class Joueur
 
     public Joueur()
     {
-        pv = 100;
+        pv = 20;
         score = 0;
     }
 
     /**
      * @return L'instance unique du Joueur
      */
-    public static Joueur getInstance();
+    public static Joueur getInstance()
     {
         if (instance == null)
         {
@@ -27,7 +27,7 @@ public class Joueur
     }
 
     /**
-     * Fait perdre de la vie au joueur (il en a 100 de base).
+     * Fait perdre de la vie au joueur (il en a 20 de base).
      *
      * @param damage (le nombre de degat prit)
      * @return true si le joueur n'a plus de points de vie.
@@ -47,6 +47,15 @@ public class Joueur
     public void incrementScore(int x)
     {
         score += x;
+    }
+
+    /**
+     * Verifie si le joueur est en vie
+     * @return true si le joueur est en vie
+     */
+    public boolean isAlive()
+    {
+        return pv > 0;
     }
 
     //getters
