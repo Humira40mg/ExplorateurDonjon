@@ -1,5 +1,4 @@
-public class Tresor
-{
+public class Tresor extends ElementDonjon {
     private int valeur_score;
     private String skin = "[-o-]";
 
@@ -13,8 +12,8 @@ public class Tresor
 
     @Override
     public String toString() {
-        return "( Trésor avec Valeur: " + valeur_score + ") " + skin;
+        return estActif()
+            ? "( Trésor avec Valeur: " + valeur_score + ") " + skin
+            : "[Trésor ramassé]";
     }
-
 }
-

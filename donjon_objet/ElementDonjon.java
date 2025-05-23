@@ -1,0 +1,35 @@
+public abstract class ElementDonjon {
+    protected boolean actif = true;
+
+    // Méthodes du composite par défaut (à override dans les composites si besoin)
+    public void setMonstre(Monstre monstre) {
+        throw new UnsupportedOperationException();
+    }
+
+    public void setTresor(Tresor tresor) {
+        throw new UnsupportedOperationException();
+    }
+
+    public void setPiege(Piege piege) {
+        throw new UnsupportedOperationException();
+    }
+
+    public void setPorte(Porte porte) {
+        throw new UnsupportedOperationException();
+    }
+
+    // Gestion du despawn
+    public void despawn() {
+        actif = false;
+    }
+
+    public boolean estActif() {
+        return actif;
+    }
+
+    @Override
+    public abstract String toString();
+}
+
+
+/* faire en sorte que les objets despawn apres etre marcher dessus   */

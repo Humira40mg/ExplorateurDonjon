@@ -1,4 +1,4 @@
-public class Piege {
+public class Piege extends ElementDonjon {
     private String type;
     private int degats;
     private String skin = "(X)";
@@ -18,6 +18,8 @@ public class Piege {
 
     @Override
     public String toString() {
-        return "Piège: " + type + " (Dégâts: " + degats + ") " + skin;
+        return estActif()
+            ? "Piège: " + type + " (Dégâts: " + degats + ") " + skin
+            : "[Piège désactivé]";
     }
 }
