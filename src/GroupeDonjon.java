@@ -15,10 +15,13 @@ public class GroupeDonjon extends ElementDonjon {
     }
 
     // Récupérer l'élément à une position donnée (ou null si absent)
+    @Override
     public ElementDonjon getElementFromPosition(int x, int y) {
+        ElementDonjon elem;
         for (ElementDonjon e : enfants) {
-            if (e.isAt(x, y)) {
-                return e;
+            elem = e.getElementFromPosition(x, y);
+            if (elem != null) {
+                return elem;
             }
         }
         return null;

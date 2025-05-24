@@ -35,8 +35,7 @@ public class Joueur extends Entite
     public boolean takeDamage(int damage)
     {
         pv -= damage;
-        if (pv <= 0) return true;
-        return false;
+        return pv <= 0;
     }
 
     /**

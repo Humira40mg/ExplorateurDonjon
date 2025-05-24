@@ -63,5 +63,11 @@ public class Monstre extends ElementDonjon {
               " position: (" + getX() + ", " + getY() + "), direction: (" + direction[0] + ", " + direction[1] + ")"
             : "[Monstre éliminé]";
     }
+
+    //getters
+    public int[] getDirection()
+    {
+        return direction;
+    }
 }
 

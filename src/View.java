@@ -82,7 +82,7 @@ public class View
 
     /**
      * Affiche les infos concernant le joueur.
-     * @param Joueur
+     * @params Joueur
      */
     private static void afficherInfoJoueur(Joueur plr)
     {
@@ -95,11 +95,14 @@ public class View
     /**
      * methode qui execute le necessaire a la fin d'une partie.
      * (Enregistrement du meilleur score ou suppression du singleton du joueur par exemple).
-     * @param Joueur
+     *
+     * @params Joueur
      */
     private static void gameOver(Joueur plr)
     {
-        //enregistrer le meilleur score.
+        //TODO afficher un ecran game over.
+
+        //TODO enregistrer le meilleur score.
 
         //suppression de l'instance du singleton.
         plr = null;

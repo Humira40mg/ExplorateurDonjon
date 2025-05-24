@@ -18,6 +18,11 @@ public abstract class ElementDonjon extends Entite {
         throw new UnsupportedOperationException();
     }
 
+    public ElementDonjon getElementFromPosition(int posx, int posy) {
+        if (this.isAt(posx, posy)) return this;
+        return null;
+    }
+
     // Gestion du despawn
     public void despawn() {
         actif = false;
@@ -27,7 +32,7 @@ public abstract class ElementDonjon extends Entite {
         return actif;
     }
 
-    public void touch(Joueur joueur) {
+    public boolean touch(Joueur joueur) {
         throw new UnsupportedOperationException();
     }
 
