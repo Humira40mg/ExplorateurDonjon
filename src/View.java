@@ -11,9 +11,13 @@ public class View
      */
     public static void clearScreen()
     {
-        //imitation d'un clear car autres methodes non fonctionnel partout.
-        for (int i = 0; i < 50; i++) {
-            System.out.println();
+        try {
+            if (System.getProperty("os.name").contains("Windows"))
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            else
+                new ProcessBuilder("clear").inheritIO().start().waitFor();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

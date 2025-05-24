@@ -1,4 +1,4 @@
-public abstract class ElementDonjon {
+public abstract class ElementDonjon extends Entite {
     protected boolean actif = true;
 
     // Méthodes du composite par défaut (à override dans les composites si besoin)

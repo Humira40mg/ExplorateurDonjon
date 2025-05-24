@@ -1,17 +1,17 @@
 /**
- * Classe singleton representant le joueur.
+ * Classe singleton representant le joueur (sous classe de entite)
  */
-public class Joueur
+public class Joueur extends Entite
 {
     private static Joueur instance;
     private int pv;
     private int score;
-    public String skin = "('u')"; //apparence visuelle du joueur
 
-    public Joueur()
+    private Joueur()
     {
         pv = 20;
         score = 0;
+        skin = "('u')"; //apparence visuelle du joueur
     }
 
     /**
@@ -29,7 +29,7 @@ public class Joueur
     /**
      * Fait perdre de la vie au joueur (il en a 20 de base).
      *
-     * @param damage (le nombre de degat prit)
+     * @params damage (le nombre de degat prit)
      * @return true si le joueur n'a plus de points de vie.
      */
     public boolean takeDamage(int damage)
@@ -42,7 +42,7 @@ public class Joueur
     /**
      * incremente de x le score du joueur
      *
-     * @param x un entier positif
+     * @params x un entier positif
      */
     public void incrementScore(int x)
     {
