@@ -1,29 +1,78 @@
+/**
+ * Classe représentant une Porte dans le Donjon.
+ *
+ * @author NGUYEN Alexandre et Nathan Milllot
+ */
 public class Porte extends ElementDonjon {
-    public enum TypePorte { ENTREE, SORTIE }
+    /**
+     * Type de porte.
+     */
+    public enum TypePorte {
+        /**
+         * Porte d'entrée.
+         */
+        ENTREE,
+        /**
+         * Porte de sortie.
+         */
+        SORTIE
+    }
 
+    /**
+     * Type de la porte.
+     */
     private TypePorte type;
+    /**
+     * Représentation textuelle de la porte.
+     */
     private String skin;
+    /**
+     * Indique si la porte est active ou non.
+     */
     private boolean actif = true;
 
+    /**
+     * Constructeur.
+     * 
+     * @param type Type de la porte.
+     */
     public Porte(TypePorte type) {
         this.type = type;
         this.skin = type == TypePorte.ENTREE ? "[E]" : "[S]";
     }
 
+    /**
+     * Retourne le type de la porte.
+     * 
+     * @return Le type de la porte.
+     */
     public TypePorte getType() {
         return type;
     }
 
+    /**
+     * Désactive la porte.
+     */
     @Override
     public void despawn() {
         this.actif = false;
     }
 
+    /**
+     * Retourne si la porte est active.
+     * 
+     * @return Si la porte est active.
+     */
     @Override
     public boolean estActif() {
         return actif;
     }
 
+    /**
+     * Retourne une chaîne de caractère représentant la porte.
+     * 
+     * @return Une chaîne de caractère représentant la porte.
+     */
     @Override
     public String toString() {
         return estActif()
@@ -31,3 +80,4 @@ public class Porte extends ElementDonjon {
             : "[Porte désactivée]";
     }
 }
+

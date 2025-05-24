@@ -1,13 +1,27 @@
+/**
+ * Classe représentant un Monstre dans le Donjon.
+ * Hérite d'ElementDonjon.
+ */
 public class Monstre extends ElementDonjon {
-    private String nom;
-    private int force;
-    private String skin;
+    private String nom; // Nom du monstre
+    private int force; // Force du monstre
+    private String skin; // Apparence visuelle du monstre
 
+    private int min; // Limite inférieure de déplacement
+    private int max; // Limite supérieure de déplacement
+    private int[] direction = {0, 0}; // Direction de déplacement par défaut
 
-    private int min;
-    private int max;
-    private int[] direction = {0, 0}; // déplacement par défaut
-
+    /**
+     * Constructeur pour initialiser un monstre.
+     *
+     * @param nom Le nom du monstre
+     * @param force La force du monstre
+     * @param x La coordonnée X initiale
+     * @param y La coordonnée Y initiale
+     * @param min La limite inférieure de déplacement
+     * @param max La limite supérieure de déplacement
+     * @param direction La direction initiale de déplacement
+     */
     public Monstre(String nom, int force, int x, int y, int min, int max, int[] direction) {
         this.nom = nom;
         this.force = force;
@@ -19,13 +33,29 @@ public class Monstre extends ElementDonjon {
         skin = "( o.o )";
     }
 
-
-
+    /**
+     * Inverse la direction de déplacement du monstre.
+     */
     public void inverserDirection() {
         direction[0] *= -1;
         direction[1] *= -1;
     }
 
+    /**
+     * Inflige des dégâts au joueur en cas de contact.
+     *
+     * @param joueur Le joueur touché par le monstre
+     */
+    public void touch(Joueur joueur) {
+        if (!joueur.isAlive()) return;
+        joueur.takeDamage(force);
+    }
+
+    /**
+     * Représentation textuelle du monstre.
+     *
+     * @return Une chaîne de caractères décrivant le monstre
+     */
     @Override
     public String toString() {
         return estActif()
@@ -34,3 +64,4 @@ public class Monstre extends ElementDonjon {
             : "[Monstre éliminé]";
     }
 }
+
