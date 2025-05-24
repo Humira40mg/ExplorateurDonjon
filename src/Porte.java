@@ -67,6 +67,24 @@ public class Porte extends ElementDonjon {
     public boolean estActif() {
         return actif;
     }
+    /**
+     * Interaction avec le joueur.
+     * 
+     * @param joueur
+     *            Le joueur qui interagit.
+     * @return Si la porte est toujours active.
+     */
+    public boolean touch(Joueur joueur) {
+        if (!estActif()) return false;
+
+        if (type == TypePorte.ENTREE) {
+            System.out.println(" Porte d'entrée : le joueur arrive dans le donjon.");
+            return false;
+        }
+
+        // Logique pour SORTIE à implémenter plus tard
+        return true;
+    }
 
     /**
      * Retourne une chaîne de caractère représentant la porte.
