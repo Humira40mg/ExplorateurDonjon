@@ -37,9 +37,10 @@ public class Tresor extends ElementDonjon {
      * @param joueur Le joueur qui a touché le trésor.
      */
     @Override
-    public void touch(Joueur joueur) {
-        if(!joueur.isAlive())return; 
+    public boolean touch(Joueur joueur) {
+        if (!joueur.isAlive()) return false;
         joueur.incrementScore(valeur_score);
+        return true;
     }
     
     /**

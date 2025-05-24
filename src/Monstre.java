@@ -46,11 +46,11 @@ public class Monstre extends ElementDonjon {
      *
      * @param joueur Le joueur touché par le monstre
      */
-    public void touch(Joueur joueur) {
-        if (!joueur.isAlive()) return;
+    public boolean touch(Joueur joueur) {
+        if (!joueur.isAlive()) return false;
         joueur.takeDamage(force);
+        return true;
     }
-
     /**
      * Représentation textuelle du monstre.
      *
