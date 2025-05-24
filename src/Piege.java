@@ -16,6 +16,13 @@ public class Piege extends ElementDonjon {
         return degats;
     }
 
+    public void touch(Joueur joueur) {
+        if (joueur.isAlive())return; 
+        joueur.takeDamage(degats);
+        despawn();
+        
+    }
+
     @Override
     public String toString() {
         return estActif()

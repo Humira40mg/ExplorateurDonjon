@@ -27,6 +27,10 @@ public abstract class ElementDonjon extends Entite {
         return actif;
     }
 
+    public void touch(Joueur joueur) {
+        throw new UnsupportedOperationException();
+    }
+
     @Override
     public abstract String toString();
 }

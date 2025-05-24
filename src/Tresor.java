@@ -11,6 +11,12 @@ public class Tresor extends ElementDonjon {
     }
 
     @Override
+    public void touch(Joueur joueur) {
+        if(!joueur.isAlive())return; 
+        joueur.incrementScore(valeur_score);
+    }
+
+    @Override
     public String toString() {
         return estActif()
             ? "( Trésor avec Valeur: " + valeur_score + ") " + skin

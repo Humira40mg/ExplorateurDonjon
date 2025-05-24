@@ -16,7 +16,7 @@ public class Monstre extends ElementDonjon {
         this.min = min;
         this.max = max;
         this.direction = direction;
-        this.skin = "( o.o )";
+        skin = "( o.o )";
     }
 
 
