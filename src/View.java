@@ -48,15 +48,17 @@ public class View
     private static void startGame()
     {
         Joueur player = Joueur.getInstance();
-        String lastinput = "d";
+        String lastinput = "z";
         String input;
 
         while (player.isAlive())
         {
-            //TODO
-            clearScreen();
+            //recuperation de l'instance de salle
+            Salle salle = GenerateurSalle.getSalle();
 
+            clearScreen();
             //Afficher la carte
+            salle.afficherSalle();
 
             //Afficher les info joueur.
             afficherInfoJoueur(player);
@@ -74,6 +76,7 @@ public class View
             }
 
             //deplacer le joueur.
+            salle.deplacerJoueur(input);
         }
 
         //mort du joueur, retour au menu principal.

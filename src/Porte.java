@@ -38,7 +38,7 @@ public class Porte extends ElementDonjon {
      */
     public Porte(TypePorte type) {
         this.type = type;
-        this.skin = type == TypePorte.ENTREE ? "[E]" : "[S]";
+        this.skin = type == TypePorte.ENTREE ? "[===]" : "[---]";
     }
 
     /**
@@ -77,13 +77,12 @@ public class Porte extends ElementDonjon {
     public boolean touch(Joueur joueur) {
         if (!estActif()) return false;
 
-        if (type == TypePorte.ENTREE) {
-            System.out.println(" Porte d'entrée : le joueur arrive dans le donjon.");
-            return false;
+        if (type == TypePorte.SORTIE) {
+            // soigne le joueur et supprime l'instance de la salle
+            joueur.heal(1);
+            GenerateurSalle.destroySalle();
         }
-
-        // Logique pour SORTIE à implémenter plus tard
-        return true;
+        return false;
     }
 
     /**

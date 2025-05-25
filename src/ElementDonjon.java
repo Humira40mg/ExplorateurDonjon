@@ -23,6 +23,13 @@ public abstract class ElementDonjon extends Entite {
         return null;
     }
 
+    // recupere le composant parent d'un type d'instance.
+    public ElementDonjon getGroupeFromInstance(Class<?> type)
+    {
+        if (type.isInstance(this)) return this;
+        return null;
+    }
+
     // Gestion du despawn
     public void despawn() {
         actif = false;

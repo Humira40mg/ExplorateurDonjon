@@ -39,6 +39,17 @@ public class Joueur extends Entite
     }
 
     /**
+     * heal, soigne le joueur d'un certain nombre de pv.
+     *
+     * @params vie
+     */
+    public void heal(int vie)
+    {
+        pv+=vie;
+        if (pv > 20) pv = 20;
+    }
+
+    /**
      * incremente de x le score du joueur
      *
      * @params x un entier positif

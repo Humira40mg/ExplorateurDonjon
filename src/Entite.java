@@ -3,9 +3,9 @@
  */
 abstract class Entite
 {
-    protected int x; //coordonée x
-    protected int y; //coordonée y
-    protected String skin; //apparence visuelle de l'entitée
+    protected static int x; //coordonée x
+    protected static int y; //coordonée y
+    protected static String skin; //apparence visuelle de l'entitée
 
     /**
      * isAt verifie que l'entitée est dans la portée de la position indiquée

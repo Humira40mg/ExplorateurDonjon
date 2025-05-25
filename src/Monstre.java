@@ -3,34 +3,24 @@
  * Hérite d'ElementDonjon.
  */
 public class Monstre extends ElementDonjon {
-    private String nom; // Nom du monstre
     private int force; // Force du monstre
     private String skin; // Apparence visuelle du monstre
 
-    private int min; // Limite inférieure de déplacement
-    private int max; // Limite supérieure de déplacement
     private int[] direction = {0, 0}; // Direction de déplacement par défaut
 
     /**
      * Constructeur pour initialiser un monstre.
      *
-     * @param nom Le nom du monstre
-     * @param force La force du monstre
      * @param x La coordonnée X initiale
      * @param y La coordonnée Y initiale
-     * @param min La limite inférieure de déplacement
-     * @param max La limite supérieure de déplacement
      * @param direction La direction initiale de déplacement
      */
-    public Monstre(String nom, int force, int x, int y, int min, int max, int[] direction) {
-        this.nom = nom;
-        this.force = force;
+    public Monstre(int x, int y, int[] direction) {
+        this.force = 5;
         setX(x);
         setY(y);
-        this.min = min;
-        this.max = max;
         this.direction = direction;
-        skin = "( o.o )";
+        skin = "(°o.o°)";
     }
 
     /**
@@ -59,7 +49,7 @@ public class Monstre extends ElementDonjon {
     @Override
     public String toString() {
         return estActif()
-            ? "Monstre " + nom + " (" + force + ") " + skin +
+            ? "Monstre (" + force + ") " + skin +
               " position: (" + getX() + ", " + getY() + "), direction: (" + direction[0] + ", " + direction[1] + ")"
             : "[Monstre éliminé]";
     }

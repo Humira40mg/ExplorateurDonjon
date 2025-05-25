@@ -27,6 +27,18 @@ public class GroupeDonjon extends ElementDonjon {
         return null;
     }
 
+    // recupere le composant parent d'un type d'instance.
+    @Override
+    public ElementDonjon getGroupeFromInstance(Class<?> type)
+    {
+        for (ElementDonjon e : enfants)
+        {
+            ElementDonjon elem = e.getGroupeFromInstance(type);
+            if (type.isInstance(elem)) return this;
+        }
+        return null;
+    }
+
 
     // Désactivation des enfants
     @Override

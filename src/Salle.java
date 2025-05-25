@@ -11,7 +11,7 @@ public class Salle {
     private GroupeDonjon groupeElem;
 
     //la matrice de la salle.
-    private char[][] map;
+    public char[][] map;
 
     //Constructeur de la classe
     public Salle(GroupeDonjon elem, char[][] matrice)
@@ -44,7 +44,7 @@ public class Salle {
      * @params char bloquant, le char a la position visée.
      * @return bool true si le placement est un succes false sinon.
      */
-    private boolean setPositionJoueur(int x, int y, char bloquant)
+    public boolean setPositionJoueur(int x, int y, char bloquant)
     {
         switch (bloquant)
         {
@@ -92,7 +92,7 @@ public class Salle {
      * @params int y la coordonnée Y;
      * @return true si le placement est un succes false sinon.
      */
-    private boolean setPositionElem(ElementDonjon element, int x, int y, char bloquant)
+    public boolean setPositionElem(ElementDonjon element, int x, int y, char bloquant)
     {
         switch (bloquant)
         {
@@ -195,7 +195,7 @@ public class Salle {
      * @params Monstre
      * @return bool true si le deplacement est un succes false sinon.
      */
-    public boolean deplacerElem(Monstre elem)
+    private boolean deplacerElem(Monstre elem)
     {
         int[] direction = elem.getDirection();
         char nextPosChar = ' ';
@@ -213,6 +213,12 @@ public class Salle {
         return setPositionElem(elem, elem.getX() + direction[0], elem.getY() + direction[1], nextPosChar);
     }
 
+    private void deplacerTousMonstres()
+    {
+        ElementDonjon grp = groupeElem.getGroupeFromInstance(Monstre.class);
+
+    }
+
     /**
      * checkPositionLibre, verifie si les positions sont libres dans la portée visée.
      *
@@ -220,7 +226,7 @@ public class Salle {
      * @params int y;
      * @return ' ' si c'est vide, le charactere bloquant sinon.
      */
-    private char checkPositionLibre(int x, int y)
+    public char checkPositionLibre(int x, int y)
     {
         return map[x][y];
     }
