@@ -1,15 +1,28 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe composant contenant d'autres elements
+ */
 public class GroupeDonjon extends ElementDonjon {
+
+    //liste des Sous-elements
     private List<ElementDonjon> enfants = new ArrayList<>();
 
-    // Ajouter un élément au groupe
+    /**
+     * Ajouter un élément au groupe
+     *
+     * @param e element a ajouter
+     */
     public void ajouter(ElementDonjon e) {
         enfants.add(e);
     }
 
-    // Retirer un élément du groupe
+    /**
+     * Retirer un élément du groupe
+     *
+     * @param e element a retirer
+     */
     public void retirer(ElementDonjon e) {
         if (enfants.remove(e)) return;
 
@@ -56,16 +69,5 @@ public class GroupeDonjon extends ElementDonjon {
     public List<ElementDonjon> getChildren()
     {
         return enfants;
-    }
-
-    // Affichage
-    @Override
-    public String toString() {
-        if (!estActif()) return "[Groupe inactif]";
-        StringBuilder sb = new StringBuilder("GroupeDonjon :\n");
-        for (ElementDonjon e : enfants) {
-            sb.append("  ").append(e.toString()).append("\n");
-        }
-        return sb.toString();
     }
 }

@@ -37,7 +37,7 @@ public class Joueur extends Entite
     /**
      * Fait perdre de la vie au joueur (il en a 60 de base).
      *
-     * @params damage (le nombre de degat prit)
+     * @param damage (le nombre de degat prit)
      * @return true si le joueur n'a plus de points de vie.
      */
     public boolean takeDamage(int damage)
@@ -50,7 +50,7 @@ public class Joueur extends Entite
     /**
      * heal, soigne le joueur d'un certain nombre de pv.
      *
-     * @params vie
+     * @param vie
      */
     public void heal(int vie)
     {
@@ -61,7 +61,7 @@ public class Joueur extends Entite
     /**
      * incremente de x le score du joueur
      *
-     * @params x un entier positif
+     * @param x un entier positif
      */
     public void incrementScore(int x)
     {
@@ -70,6 +70,7 @@ public class Joueur extends Entite
 
     /**
      * Verifie si le joueur est en vie
+     *
      * @return true si le joueur est en vie
      */
     public boolean isAlive()

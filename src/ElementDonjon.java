@@ -5,10 +5,6 @@
  * @author NGUYEN Alexandre et  MILLOT Nathan
  */
 public abstract class ElementDonjon extends Entite {
-    /**
-     * Variable qui permet de savoir si l'élément est actif ou non.
-     */
-    protected boolean actif = true;
 
     /**
      * Méthode qui permet de récupérer l'élément qui est à une certaine position.
@@ -33,26 +29,12 @@ public abstract class ElementDonjon extends Entite {
     }
 
     /**
-     * Méthode qui permet de savoir si l'élément est actif ou non.
-     * @return true si l'élément est actif, false sinon.
+     * Méthode qui permet de reagire et activer les effets voulu si l'élément est touché par un joueur.
+     * @param joueur le joueur en contact avec l'élément.
+     * @return true si l'element doit disparaitre
      */
-    public boolean estActif() {
-        return actif;
+    public boolean touch(Joueur joueur)
+    {
+        return false;
     }
-
-    /**
-     * Méthode qui permet de savoir si l'élément est touché par un joueur.
-     * @param joueur le joueur qui est éventuellement en contact avec l'élément.
-     * @return true si l'élément est touché par le joueur, false sinon.
-     */
-    public boolean touch(Joueur joueur) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Méthode qui permet de représenter l'élément sous forme de chaine de caractères.
-     * @return une chaine de caractères qui représente l'élément.
-     */
-    @Override
-    public abstract String toString();
 }

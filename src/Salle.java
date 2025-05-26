@@ -39,12 +39,11 @@ public class Salle {
     /**
      * setPositionJoueur, place le joueur au coordonnées passée en parametres.
      *
-     * @params int x la coordonnée X;
-     * @params int y la coordonnée Y;
-     * @params char bloquant, le char a la position visée.
-     * @return bool true si le placement est un succes false sinon.
+     * @param x la coordonnée X;
+     * @param y la coordonnée Y;
+     * @param bloquant, le char a la position visée.
      */
-    public boolean setPositionJoueur(int x, int y, char bloquant, ElementDonjon elem)
+    public void setPositionJoueur(int x, int y, char bloquant, ElementDonjon elem)
     {
         switch (bloquant)
         {
@@ -54,30 +53,7 @@ public class Salle {
 
                 //affiche sur la carte
                 afficherEntite(plr);
-
-                return true;
-
-            /* case '#' :
-                //Permet d'empecher d'esquiver un monstres en restant sur place
-                //verifie si il y'a un obstacle a la prochaine position
-                for (int i = plr.getY(); i < plr.getY() + plr.getSkin().length(); i++ )
-                {
-                    bloquant = checkPositionLibre(plr.getX(), i);
-                    if (bloquant != ' ' && bloquant != '#')
-                    {//trouve l'element si la zone est occupé
-                        elem = groupeElem.getElementFromPosition(plr.getX(), i);
-                        break;
-                    }
-                }
-
-                if (elem != null && elem.touch(plr))
-                {
-                    destroyElement(elem);
-                }
-                //affiche sur la carte
-                afficherEntite(plr);
-                return false; */
-
+                break;
 
             default:
                 //active l'effet de l'element puis le detruit.
@@ -91,7 +67,7 @@ public class Salle {
                     //affiche sur la carte
                     afficherEntite(plr);
 
-                    return true;
+                    break;
                 }
 
                 //Permet d'empecher d'esquiver un monstres en restant sur place
@@ -112,7 +88,7 @@ public class Salle {
                 }
                 //affiche sur la carte
                 afficherEntite(plr);
-                return false;
+                break;
         }
     }
 
@@ -120,12 +96,11 @@ public class Salle {
     /**
      * setPositionElem, place l'element entré en parametre au coordonnées passée en parametres.
      *
-     * @params ElementDonjon element;
-     * @params int x la coordonnée X;
-     * @params int y la coordonnée Y;
-     * @return true si le placement est un succes false sinon.
+     * @param element;
+     * @param x la coordonnée X;
+     * @param y la coordonnée Y;
      */
-    public boolean setPositionElem(ElementDonjon element, int x, int y, char bloquant)
+    public void setPositionElem(ElementDonjon element, int x, int y, char bloquant)
     {
         switch (bloquant)
         {
@@ -137,14 +112,13 @@ public class Salle {
 
                 //affiche sur la carte
                 afficherEntite(element);
-
-                return true;
+                break;
 
             default:
                 //le faire partir dans l'autre sens si c'est un monstre (il y'a donc un temps d'arret si obstacle).
                 if (element instanceof Monstre)
                     ((Monstre) element).inverserDirection();
-                return false;
+                break;
         }
     }
 
@@ -152,9 +126,8 @@ public class Salle {
      * deplacerJoueur, deplace de 1 la position du joueur.
      *
      * @params String z, q, s ou d en soit la direction prise.
-     * @return bool true si le deplacement est un succes false sinon.
      */
-    public boolean deplacerJoueur(String choix)
+    public void deplacerJoueur(String choix)
     {
         char dir = choix.toCharArray()[0];
         char nextPosChar = ' ';
@@ -179,7 +152,8 @@ public class Salle {
                 }
 
                 //modifie officiellement la position
-                return setPositionJoueur(plr.getX() - 1, plr.getY(), nextPosChar, elem);
+                setPositionJoueur(plr.getX() - 1, plr.getY(), nextPosChar, elem);
+                break;
 
             case 'q' :
                 //verifie si il y'a un obstacle a la prochaine position
@@ -190,7 +164,8 @@ public class Salle {
                     elem = groupeElem.getElementFromPosition(plr.getX(), plr.getY() - 1);
 
                 //modifie officiellement la position
-                return setPositionJoueur(plr.getX(), plr.getY() - 1, nextPosChar, elem);
+                setPositionJoueur(plr.getX(), plr.getY() - 1, nextPosChar, elem);
+                break;
 
             case 's' :
                 //verifie si il y'a un obstacle a la prochaine position
@@ -207,7 +182,8 @@ public class Salle {
                 }
 
                 //modifie officiellement la position
-                return setPositionJoueur(plr.getX() + 1, plr.getY(), nextPosChar, elem);
+                setPositionJoueur(plr.getX() + 1, plr.getY(), nextPosChar, elem);
+                break;
 
             case 'd' :
                 //verifie si il y'a un obstacle a la prochaine position
@@ -218,7 +194,8 @@ public class Salle {
                     elem = groupeElem.getElementFromPosition(plr.getX(), plr.getY() + plr.getSkin().length());
 
                 //modifie officiellement la position
-                return setPositionJoueur(plr.getX(), plr.getY() + 1, nextPosChar, elem);
+                setPositionJoueur(plr.getX(), plr.getY() + 1, nextPosChar, elem);
+                break;
 
             default:
                 //le joueur ne bouge pas :
@@ -232,7 +209,7 @@ public class Salle {
                         break;
                     }
                 }
-                return setPositionJoueur(plr.getX(), plr.getY(), nextPosChar, elem);
+                setPositionJoueur(plr.getX(), plr.getY(), nextPosChar, elem);
         }
     }
 
@@ -241,9 +218,8 @@ public class Salle {
      * A EXECUTER AVANT deplacerJoueur.
      *
      * @param elem
-     * @return bool true si le deplacement est un succes false sinon.
      */
-    private boolean deplacerElem(Monstre elem)
+    private void deplacerElem(Monstre elem)
     {
         int[] direction = elem.getDirection();
         char nextPosChar = ' ';
@@ -264,7 +240,7 @@ public class Salle {
                 nextPosChar = checkPositionLibre(elem.getX(), elem.getY() + direction[1]);
         }
 
-        return setPositionElem(elem, elem.getX() + direction[0], elem.getY() + direction[1], nextPosChar);
+        setPositionElem(elem, elem.getX() + direction[0], elem.getY() + direction[1], nextPosChar);
     }
 
     /**
@@ -324,7 +300,7 @@ public class Salle {
     /**
      * destroyElement, efface un element de la carte, detruit l'instance de cet element.
      *
-     * @params ElementDonjon
+     * @param elem element a detruire
      */
     private void destroyElement(ElementDonjon elem)
     {

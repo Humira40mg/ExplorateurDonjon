@@ -1,7 +1,7 @@
 /**
  * Représente un trésor qui peut être ramassé par le joueur.
  * 
- * @author NGUYEN Alexandre et Nathan Milllot
+ * @author NGUYEN Alexandre et MILLOT Nathan
  */
 public class Tresor extends ElementDonjon {
     /**
@@ -20,15 +20,6 @@ public class Tresor extends ElementDonjon {
     }
     
     /**
-     * Retourne la valeur du trésor.
-     * 
-     * @return La valeur du trésor.
-     */
-    public int getValeur_score() {
-        return valeur_score;
-    }
-    
-    /**
      * Lorsque le joueur touche le trésor, il ramasse le trésor et gagne le score correspondant.
      * 
      * @param joueur Le joueur qui a touché le trésor.
@@ -38,17 +29,5 @@ public class Tresor extends ElementDonjon {
         if (!joueur.isAlive()) return false;
         joueur.incrementScore(valeur_score);
         return true;
-    }
-    
-    /**
-     * Retourne une chaîne de caractère représentant le trésor.
-     * 
-     * @return Une chaîne de caractère représentant le trésor.
-     */
-    @Override
-    public String toString() {
-        return estActif()
-            ? "( Trésor avec Valeur: " + valeur_score + ") " + skin
-            : "[Trésor ramassé]";
     }
 }

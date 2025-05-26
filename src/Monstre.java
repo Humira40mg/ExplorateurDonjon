@@ -3,6 +3,7 @@
  * Hérite d'ElementDonjon.
  */
 public class Monstre extends ElementDonjon {
+
     private int force; // Force du monstre
 
     private int[] direction = {0, 0}; // Direction de déplacement par défaut
@@ -34,23 +35,12 @@ public class Monstre extends ElementDonjon {
      * Inflige des dégâts au joueur en cas de contact.
      *
      * @param joueur Le joueur touché par le monstre
+     * @return true si l'element doit disparaitre
      */
     public boolean touch(Joueur joueur) {
         if (!joueur.isAlive()) return false;
         joueur.takeDamage(force);
         return true;
-    }
-    /**
-     * Représentation textuelle du monstre.
-     *
-     * @return Une chaîne de caractères décrivant le monstre
-     */
-    @Override
-    public String toString() {
-        return estActif()
-            ? "Monstre (" + force + ") " + skin +
-              " position: (" + getX() + ", " + getY() + "), direction: (" + direction[0] + ", " + direction[1] + ")"
-            : "[Monstre éliminé]";
     }
 
     //getters

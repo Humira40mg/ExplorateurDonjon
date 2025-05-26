@@ -1,7 +1,7 @@
 /**
  * Classe représentant un piège dans le donjon.
  * 
- * @author NGUYEN Alexandre et Nathan Milllot
+ * @author NGUYEN Alexandre et MILLOT Nathan
  *
  */
 public class Piege extends ElementDonjon {
@@ -27,18 +27,6 @@ public class Piege extends ElementDonjon {
         if (!joueur.isAlive()) return false;
         joueur.takeDamage(degats);
         return true;
-    }
-
-    /**
-     * Retourne une chaîne de caractère représentant le piège.
-     * 
-     * @return Chaîne de caractère représentant le piège.
-     */
-    @Override
-    public String toString() {
-        return estActif()
-            ? "Piège: (Dégâts: " + degats + ") " + skin
-            : "[Piège désactivé]";
     }
 }
 

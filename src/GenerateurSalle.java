@@ -131,12 +131,11 @@ public class GenerateurSalle {
     /**
      * forcePlace, force le placement d'une entite a une position sans se souciée de ce qui est deja present.
      *
-     * @param elem
-     * @param map
+     * @param elem element a placer
+     * @param map la carte
      */
     private static void forcePlace(Entite elem, char[][] map)
     {
-        //TODO System.out.println(Integer.toString(elem.getX()));
         for (int i = 0; i < elem.getSkin().length(); i++)
         {
             map[elem.getX()][elem.getY() + i] = elem.getSkin().charAt(i);
@@ -147,8 +146,8 @@ public class GenerateurSalle {
      * essaye a 5 reprise de positionner un element dans le donjon aleatoirement. Si c'est un succes
      * alors l'element est ajouté a l'arborescence de GroupeDonjon.
      *
-     * @param elem
-     * @param composant
+     * @param elem element a positionner
+     * @param composant le groupe auquel il apartient
      * @param laSalle
      * @param longueurSalle
      * @param largeurSalle
