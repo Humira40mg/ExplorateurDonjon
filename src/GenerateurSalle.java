@@ -66,14 +66,9 @@ public class GenerateurSalle {
         entree.setX(centrerX + longueurSalle - 1);
         entree.setY(rand.nextInt(largeurSalle - 6) + centrerY + 1);
 
-        System.out.println(Integer.toString(entree.getX()));
-        System.out.println(entree.getSkin());
-
         //calcule des coordonnées de la sortie
         sortie.setX(centrerX);
         sortie.setY(rand.nextInt(largeurSalle - 6) + centrerY + 1);
-
-        System.out.println(Integer.toString(sortie.getX()));
 
         forcePlace(entree, map);
         forcePlace(sortie, map);
