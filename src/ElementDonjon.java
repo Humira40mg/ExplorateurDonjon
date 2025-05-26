@@ -46,6 +46,3 @@ public abstract class ElementDonjon extends Entite {
     @Override
     public abstract String toString();
 }
-
-
-/* faire en sorte que les objets despawn apres etre marcher dessus   */

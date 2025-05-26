@@ -6,19 +6,14 @@ import java.util.Scanner;
 public class View
 {
     private static Scanner reader = new Scanner(System.in);
+
     /**
      * Efface ce qui est affiché sur le terminal
      */
     public static void clearScreen()
     {
-        try {
-            if (System.getProperty("os.name").contains("Windows"))
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-            else
-                new ProcessBuilder("clear").inheritIO().start().waitFor();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 
     /**
@@ -74,6 +69,7 @@ public class View
                 gameOver(player);
                 break;
             }
+            lastinput = input;
 
             //deplacer le joueur.
             salle.deplacerJoueur(input);
@@ -89,7 +85,7 @@ public class View
      */
     private static void afficherInfoJoueur(Joueur plr)
     {
-        System.out.println(">-------------------------------------------------<");
+        System.out.println(">----------------------------------------------------------<");
         System.out.println("Score : " + Integer.toString(plr.getScore()));
         System.out.println("PV : [" + "#".repeat(plr.getPv()) + "-".repeat(20-plr.getPv()) + "]");
         System.out.println("zqsd pour choisir une direction (juste 'entrer' pour repeter l'input precedent) ou taper exit pour quitter.");
@@ -103,7 +99,16 @@ public class View
      */
     private static void gameOver(Joueur plr)
     {
-        //TODO afficher un ecran game over.
+        //afficher un ecran game over.
+        System.out.println(
+                "   ___                                      ___                           \n" +
+                "  / __|   __ _    _ __     ___      o O O  / _ \\   __ __    ___      _ _  \n" +
+                " | (_ |  / _` |  | '  \\   / -_)    o      | (_) |  \\ V /   / -_)    | '_| \n" +
+                "  \\___|  \\__,_|  |_|_|_|  \\___|   TS__[O]  \\___/   _\\_/_   \\___|   _|_|_  \n" +
+                "_|\"\"\"\"\"|_|\"\"\"\"\"|_|\"\"\"\"\"|_|\"\"\"\"\"| {======|_|\"\"\"\"\"|_|\"\"\"\"\"|_|\"\"\"\"\"|_|\"\"\"\"\"| \n" +
+                "\"`-0-0-'\"`-0-0-'\"`-0-0-'\"`-0-0-'./o--000'\"`-0-0-'\"`-0-0-'\"`-0-0-'\"`-0-0-' ");
+
+        afficherInfoJoueur(plr);
 
         //TODO enregistrer le meilleur score.
 

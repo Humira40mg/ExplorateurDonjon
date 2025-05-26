@@ -31,10 +31,16 @@ public class GroupeDonjon extends ElementDonjon {
     @Override
     public ElementDonjon getGroupeFromInstance(Class<?> type)
     {
+        ElementDonjon elem;
         for (ElementDonjon e : enfants)
         {
-            ElementDonjon elem = e.getGroupeFromInstance(type);
-            if (type.isInstance(elem)) return this;
+            elem = e.getGroupeFromInstance(type);
+            if (elem != null)
+            {
+                if (elem instanceof GroupeDonjon)
+                    return elem;
+                return this;
+            }
         }
         return null;
     }
@@ -47,6 +53,12 @@ public class GroupeDonjon extends ElementDonjon {
         for (ElementDonjon e : enfants) {
             e.despawn();
         }
+    }
+
+    //getter
+    public List<ElementDonjon> getChildren()
+    {
+        return enfants;
     }
 
     // Affichage

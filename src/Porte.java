@@ -22,10 +22,7 @@ public class Porte extends ElementDonjon {
      * Type de la porte.
      */
     private TypePorte type;
-    /**
-     * Représentation textuelle de la porte.
-     */
-    private String skin;
+
     /**
      * Indique si la porte est active ou non.
      */
@@ -38,7 +35,7 @@ public class Porte extends ElementDonjon {
      */
     public Porte(TypePorte type) {
         this.type = type;
-        this.skin = type == TypePorte.ENTREE ? "[===]" : "[---]";
+        skin = type == TypePorte.ENTREE ? "[===]" : "[---]";
     }
 
     /**

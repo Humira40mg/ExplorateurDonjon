@@ -9,16 +9,13 @@ public class Piege extends ElementDonjon {
      * Nombre de dégâts infligés par le piège.
      */
     private int degats;
-    /**
-     * Apparence visuelle du piège.
-     */
-    private String skin = "X";
 
     /**
      * Constructeur.
      */
     public Piege() {
         this.degats = 10;
+        skin = "X"; //Apparence visuelle
     }
 
     /**
@@ -27,7 +24,7 @@ public class Piege extends ElementDonjon {
      * @param joueur Joueur qui entre en contact avec le piège.
      */
     public boolean touch(Joueur joueur) {
-        if (joueur.isAlive())return false;
+        if (!joueur.isAlive()) return false;
         joueur.takeDamage(degats);
         return true;
     }

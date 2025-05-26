@@ -49,6 +49,8 @@ public class Salle {
         switch (bloquant)
         {
             case ' ' :
+                effacerEntite(plr); //efface l'ancienne position
+
                 //deplace le joueur.
                 for (int i = 0; i < plr.getSkin().length(); i++)
                 {
@@ -69,6 +71,8 @@ public class Salle {
                 if (elem != null && elem.touch(plr))
                 {
                     destroyElement(elem);
+
+                    effacerEntite(plr); //efface l'ancienne position
 
                     //deplace le joueur
                     for (int i = 0; i < plr.getSkin().length(); i++)
@@ -97,11 +101,15 @@ public class Salle {
         switch (bloquant)
         {
             case ' ' :
+                effacerEntite(element); //efface l'ancienne position
+
                 //deplace l'element.
                 for (int i = 0; i < element.getSkin().length(); i++)
                 {
                     map[x][y + i] = element.getSkin().charAt(i);
                 }
+                element.setX(x);
+                element.setY(y);
                 return true;
 
             case '#' :
@@ -115,6 +123,8 @@ public class Salle {
                 //verifier si c'est le joueur
                 if (plr.isAt(x, y))
                 {
+                    effacerEntite(element); //efface l'ancienne position
+
                     //deplace l'element.
                     for (int i = 0; i < element.getSkin().length(); i++)
                     {
@@ -142,6 +152,8 @@ public class Salle {
     {
         char dir = choix.toCharArray()[0];
         char nextPosChar = ' ';
+
+        deplacerTousMonstres(); // deplace les monstres avant le joueur. IMPORTANT dans la logique du code
 
         switch (dir)
         {
@@ -176,7 +188,7 @@ public class Salle {
 
             case 'd' :
                 //verifie si il y'a un obstacle a la prochaine position
-                nextPosChar = checkPositionLibre(plr.getX(), plr.getY() + 1);
+                nextPosChar = checkPositionLibre(plr.getX(), plr.getY() + plr.getSkin().length() + 1);
 
                 //modifie officiellement la position
                 return setPositionJoueur(plr.getX(), plr.getY() + 1, nextPosChar);
@@ -192,7 +204,7 @@ public class Salle {
      * deplacerElem, deplace de 1 la position d'un element.
      * A EXECUTER AVANT deplacerJoueur.
      *
-     * @params Monstre
+     * @param elem
      * @return bool true si le deplacement est un succes false sinon.
      */
     private boolean deplacerElem(Monstre elem)
@@ -208,15 +220,30 @@ public class Salle {
                 if (nextPosChar != ' ') break;
             }
         }
-        else nextPosChar = checkPositionLibre(elem.getX(), elem.getY() + direction[1]);
+        else
+        {
+            if (direction[1] == 1)
+                nextPosChar = checkPositionLibre(elem.getX(), elem.getY() + elem.getSkin().length() + direction[1]);
+            else
+                nextPosChar = checkPositionLibre(elem.getX(), elem.getY() + direction[1]);
+        }
 
         return setPositionElem(elem, elem.getX() + direction[0], elem.getY() + direction[1], nextPosChar);
     }
 
+    /**
+     * deplace tous les monstres de la carte dans la direction qu'ils suivent
+     */
     private void deplacerTousMonstres()
     {
         ElementDonjon grp = groupeElem.getGroupeFromInstance(Monstre.class);
 
+        if (grp == null) return;
+
+        for (ElementDonjon monstre : ((GroupeDonjon) grp).getChildren())
+        {
+            deplacerElem((Monstre) monstre);
+        }
     }
 
     /**
@@ -232,16 +259,26 @@ public class Salle {
     }
 
     /**
+     * efface de la carte l'entite donnée.
+     *
+     * @param entite un joueur ou element
+     */
+    private void effacerEntite(Entite entite)
+    {
+        for (int i = 0; i < entite.getSkin().length(); i++)
+        {
+            map[entite.getX()][entite.getY() + i] = ' ';
+        }
+    }
+
+    /**
      * destroyElement, efface un element de la carte, detruit l'instance de cet element.
      *
      * @params ElementDonjon
      */
     private void destroyElement(ElementDonjon elem)
     {
-        for (int i = elem.getY(); i < elem.getSkin().length(); i++)
-        {
-            map[elem.getX()][i] = ' ';
-        }
+        effacerEntite(elem);
         groupeElem.retirer(elem);
     }
 }

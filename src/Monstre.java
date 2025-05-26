@@ -4,7 +4,6 @@
  */
 public class Monstre extends ElementDonjon {
     private int force; // Force du monstre
-    private String skin; // Apparence visuelle du monstre
 
     private int[] direction = {0, 0}; // Direction de déplacement par défaut
 
@@ -20,7 +19,7 @@ public class Monstre extends ElementDonjon {
         setX(x);
         setY(y);
         this.direction = direction;
-        skin = "(°o.o°)";
+        skin = "(°o.o°)"; // Apparence visuelle du monstre
     }
 
     /**

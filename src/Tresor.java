@@ -8,10 +8,6 @@ public class Tresor extends ElementDonjon {
      * Valeur du trésor en terme de score.
      */
     private int valeur_score;
-    /**
-     * Symbole qui représente le trésor sur la carte.
-     */
-    private String skin = "[-o-]";
 
     /**
      * Constructeur initialisant le trésor avec une valeur de score.
@@ -20,6 +16,7 @@ public class Tresor extends ElementDonjon {
      */
     public Tresor(int valeur_score) {
         this.valeur_score = valeur_score;
+        skin = "[-o-]";
     }
     
     /**
