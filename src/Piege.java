@@ -14,7 +14,7 @@ public class Piege extends ElementDonjon {
      * Constructeur.
      */
     public Piege() {
-        this.degats = 10;
+        this.degats = 25;
         skin = "X"; //Apparence visuelle
     }
 

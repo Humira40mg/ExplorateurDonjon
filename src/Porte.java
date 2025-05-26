@@ -48,14 +48,6 @@ public class Porte extends ElementDonjon {
     }
 
     /**
-     * Désactive la porte.
-     */
-    @Override
-    public void despawn() {
-        this.actif = false;
-    }
-
-    /**
      * Retourne si la porte est active.
      * 
      * @return Si la porte est active.
@@ -76,7 +68,7 @@ public class Porte extends ElementDonjon {
 
         if (type == TypePorte.SORTIE) {
             // soigne le joueur et supprime l'instance de la salle
-            joueur.heal(1);
+            joueur.heal(3);
             GenerateurSalle.destroySalle();
         }
         return false;

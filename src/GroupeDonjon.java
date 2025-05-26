@@ -11,7 +11,14 @@ public class GroupeDonjon extends ElementDonjon {
 
     // Retirer un élément du groupe
     public void retirer(ElementDonjon e) {
-        enfants.remove(e);
+        if (enfants.remove(e)) return;
+
+        for (ElementDonjon elem : enfants)
+        {
+            if (elem instanceof GroupeDonjon)
+                ((GroupeDonjon) elem).retirer(e);
+            else return;
+        }
     }
 
     // Récupérer l'élément à une position donnée (ou null si absent)
@@ -43,16 +50,6 @@ public class GroupeDonjon extends ElementDonjon {
             }
         }
         return null;
-    }
-
-
-    // Désactivation des enfants
-    @Override
-    public void despawn() {
-        super.despawn();
-        for (ElementDonjon e : enfants) {
-            e.despawn();
-        }
     }
 
     //getter

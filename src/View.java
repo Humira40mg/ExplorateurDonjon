@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.Scanner;
 
 /**
@@ -25,7 +26,8 @@ public class View
 
         System.out.println(">---------------<| ExploDon |>---------------<\n");
 
-        //TODO: afficher le meilleurs score
+        //afficher le meilleurs score
+        System.out.println(" [ Meilleur score : " + lireFichier() + " ]\n\n");
 
         System.out.println("  <| Appuyez sur 'Entrer' pour commencer  |>\n");
         System.out.println("     Entrez une autre touche pour quitter\n");
@@ -66,7 +68,6 @@ public class View
             //sortie controlée de la partie.
             else if (input.equals("exit"))
             {
-                gameOver(player);
                 break;
             }
             lastinput = input;
@@ -74,6 +75,9 @@ public class View
             //deplacer le joueur.
             salle.deplacerJoueur(input);
         }
+
+        //affichage de fin de partie
+        gameOver(player);
 
         //mort du joueur, retour au menu principal.
         menuPrincipal();
@@ -86,8 +90,8 @@ public class View
     private static void afficherInfoJoueur(Joueur plr)
     {
         System.out.println(">----------------------------------------------------------<");
-        System.out.println("Score : " + Integer.toString(plr.getScore()));
-        System.out.println("PV : [" + "#".repeat(plr.getPv()) + "-".repeat(20-plr.getPv()) + "]");
+        System.out.println("Score : " + Integer.toString(plr.getScore()) + "           [-o-] : Coffres     (°o.o°) : Monstres    X : Pieges");
+        System.out.println("PV : [" + "#".repeat(plr.getPv()) + "-".repeat(60-plr.getPv()) + "]");
         System.out.println("zqsd pour choisir une direction (juste 'entrer' pour repeter l'input precedent) ou taper exit pour quitter.");
     }
 
@@ -110,9 +114,45 @@ public class View
 
         afficherInfoJoueur(plr);
 
-        //TODO enregistrer le meilleur score.
+        System.out.println("\n Appuyez sur 'Entrer' pour continuer.");
 
-        //suppression de l'instance du singleton.
-        plr = null;
+        reader.nextLine();
+
+        //enregistrer meilleure score
+        if (Integer.parseInt(lireFichier()) < plr.getScore())
+            ecrireFichier(Integer.toString(plr.getScore()));
+
+        //suppression de l'instance du singleton joueur et de la salle actuelle.
+        Joueur.destroy();
+        GenerateurSalle.destroySalle();
+    }
+
+    /**
+     * Permet de lire le meilleure score enregistré dans un fichier txt
+     *
+     * @return
+     */
+    private static String lireFichier()
+    {
+        try (BufferedReader br = new BufferedReader(new FileReader("meilleurScore.txt"))) {
+            return br.readLine(); // Lit la première ligne
+        } catch (IOException e) {
+            return "0";
+        }
+    }
+
+    /**
+     * Permet d'ecrire le meilleure score dans un fichier txt
+     *
+     * @return
+     */
+    private static void ecrireFichier(String n)
+    {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("meilleurScore.txt"))) {
+            bw.write(n);
+            bw.newLine();
+        } catch (IOException e) {
+            return;
+        }
     }
 }

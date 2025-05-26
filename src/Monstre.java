@@ -15,7 +15,7 @@ public class Monstre extends ElementDonjon {
      * @param direction La direction initiale de déplacement
      */
     public Monstre(int x, int y, int[] direction) {
-        this.force = 5;
+        this.force = 15;
         setX(x);
         setY(y);
         this.direction = direction;

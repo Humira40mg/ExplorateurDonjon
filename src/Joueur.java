@@ -9,7 +9,7 @@ public class Joueur extends Entite
 
     private Joueur()
     {
-        pv = 20;
+        pv = 60;
         score = 0;
         skin = "('u')"; //apparence visuelle du joueur
     }
@@ -27,7 +27,15 @@ public class Joueur extends Entite
     }
 
     /**
-     * Fait perdre de la vie au joueur (il en a 20 de base).
+     * detruit l'instance du joueur.
+     */
+    public static void destroy()
+    {
+        instance = null;
+    }
+
+    /**
+     * Fait perdre de la vie au joueur (il en a 60 de base).
      *
      * @params damage (le nombre de degat prit)
      * @return true si le joueur n'a plus de points de vie.
@@ -35,7 +43,8 @@ public class Joueur extends Entite
     public boolean takeDamage(int damage)
     {
         pv -= damage;
-        return pv <= 0;
+        if (pv < 0) pv = 0;
+        return pv == 0;
     }
 
     /**
@@ -46,7 +55,7 @@ public class Joueur extends Entite
     public void heal(int vie)
     {
         pv+=vie;
-        if (pv > 20) pv = 20;
+        if (pv > 60) pv = 60;
     }
 
     /**
