@@ -1,7 +1,7 @@
 /**
  * Classe mere originelle avec le systeme de coordonées necessaire a tout ce qui integrera le donjon.
  */
-abstract class Entite
+public abstract class Entite
 {
     protected int x; //coordonée x
     protected int y; //coordonée y
